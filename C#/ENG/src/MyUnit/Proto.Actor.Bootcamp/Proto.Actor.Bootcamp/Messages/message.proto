@@ -1,0 +1,30 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Messages";
+
+package Playback;
+
+message PlayMovieMessage {
+	string movie_title = 1;
+	int32 user_id = 2;
+}
+
+message StopMovieMessage {
+	int32 user_id = 1;
+}
+
+message Recoverable {
+
+}
+
+message RequestActorPid {
+
+}
+
+message IncrementPlayCount {
+	string movie_title = 1 ;
+}
+
+message RoutedMessage {
+	string text = 1;
+}
