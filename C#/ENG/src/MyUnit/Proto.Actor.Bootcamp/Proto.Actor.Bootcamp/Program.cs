@@ -1,8 +1,10 @@
 ﻿using Messages;
+using Microsoft.Data.Sqlite;
 using Proto;
 using Proto.Actor.Bootcamp;
 using Proto.Actor.Bootcamp.Actors;
 using Proto.Actor.Bootcamp.Messages;
+using Proto.Persistence.Sqlite;
 using Proto.Router;
 
 namespace MovieStreaming;
@@ -154,7 +156,8 @@ class Program
     }
     */
 
-    static async Task Main(string[] args)
+    /* UNIT 7
+     * static async Task Main(string[] args)
     {
         Props MyActorProps = Props.FromProducer(() => new MyActor());
 
@@ -175,7 +178,31 @@ class Program
             context.Send(pid, new RoutedMessage { Text = $"{i}" });
         }
 
+
         Thread.Sleep(1000);
+    }
+    */
+
+    static void Main(string[] args)
+    {
+        var system = new ActorSystem();
+        var context = new RootContext(system);
+        var provider = new SqliteProvider(new SqliteConnectionStringBuilder { DataSource = "states.db" });
+
+        var props = Props.FromProducer(() => new Calculator(provider));
+        var pid = context.Spawn(props);
+
+        system.Root.Send(pid, new AddCommand { Value = 100 });
+        system.Root.Send(pid, new SubtractCommand { Value = 50 });
+
+        system.Root.Send(pid, new PrintResultCommand());
+
+        system.Root.Poison(pid);
+
+        pid = context.Spawn(props);
+
+        system.Root.Send(pid, new PrintResultCommand());
+        Console.ReadLine();
     }
 
 

@@ -1,8 +1,7 @@
 ﻿syntax = "proto3";
-
 option csharp_namespace = "Messages";
-
 package Playback;
+
 
 message PlayMovieMessage {
 	string movie_title = 1;
@@ -18,7 +17,6 @@ message Recoverable {
 }
 
 message RequestActorPid {
-
 }
 
 message IncrementPlayCount {
@@ -27,4 +25,42 @@ message IncrementPlayCount {
 
 message RoutedMessage {
 	string text = 1;
+}
+
+message AddCommand {
+	double value = 1;
+}
+
+message SubtractCommand {
+	double value = 1;
+}
+
+message DivideCommand {
+	double value = 1;
+}
+
+message MultiplyCommand {
+	double value = 1;
+}
+
+message PrintResultCommand {}
+
+message ClearCommand {}
+
+message ResetEvent {}
+
+message AddedEvent {
+	double value = 1;
+}
+
+message SubtractedEvent {
+	double value = 1;
+}
+
+message DividedEvent {
+	double value = 1;
+}
+
+message MultipliedEvent {
+	double value = 1;
 }

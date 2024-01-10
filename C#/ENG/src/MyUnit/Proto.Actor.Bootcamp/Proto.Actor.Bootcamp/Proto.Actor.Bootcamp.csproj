@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -12,11 +12,15 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.1" />
     <PackageReference Include="Proto.Actor" Version="1.5.0" />
+    <PackageReference Include="Proto.Persistence" Version="1.5.0" />
+    <PackageReference Include="Proto.Persistence.Sqlite" Version="1.5.0" />
+    <PackageReference Include="Proto.Remote" Version="1.5.0" />
   </ItemGroup>
 
 <ItemGroup>
-	<Protobuf Include="Messages\message.proto" />
+	<Protobuf Include="Messages\message.proto" GrpcServices="Server" />
 </ItemGroup>
 
 </Project>
